@@ -13,9 +13,11 @@ class PostIndex extends Component{
         // })
         return _.map(this.props.ReducerPost,item=>{
             return(
-                <li className="list-group-item" key={item.id}>
-                    {item.title}
-                </li>
+               <Link 
+                to={`/post/${item.id}`} 
+                key={item.id}>
+                <li className="list-group-item" >{item.title}</li>
+                </Link>
             );
         })
     }
