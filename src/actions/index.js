@@ -9,10 +9,16 @@ export const ROOT_URL = `https://reduxblog.herokuapp.com/api/posts/`
 
 export function fetchPosts(){
     const request =axios.get(`${ROOT_URL}${API_KEY}`);
-    return{
-        type:FETCH_POST,
-        payload:request
-    };   
+    return(dispatch)=>{
+        request.then(({data})=>{
+            dispatch({type:FETCH_POST,payload:data})
+        });
+    };
+     //without thunk
+    // return{
+    //     type:FETCH_POST,
+    //     payload:request
+    // };   
 
 }
 export function createPosts(values,callback){
@@ -24,21 +30,19 @@ export function createPosts(values,callback){
     };   
 
 }
-// export function createPosts(values){
-//     const request =axios.post(`${ROOT_URL}${API_KEY}`,values);
-//     return{
-//         type:CREATE_POST,
-//         payload:request
-//     };   
 
-// }
 export function fetchPostById(id){
     const request =axios.get(`${ROOT_URL}${id}${API_KEY}`);
-    return{
-        type:FETCH_POST_BY_ID,
-        payload:request
-    };   
-
+     //without thunk
+    // return{
+    //     type:FETCH_POST_BY_ID,
+    //     payload:request
+    // };   
+    return(dispatch)=>{
+        request.then(({data})=>{
+            dispatch({type:FETCH_POST_BY_ID,payload:data})
+        });
+    };
 }
 export function deletePost(id,callback){
     const request =axios.delete(`${ROOT_URL}${id}${API_KEY}`)
